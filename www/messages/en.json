@@ -266,6 +266,7 @@
         "externalConfigLabel": "External Config",
         "configPresetACL4SSROnline": "ACL4SSR Online",
         "configPresetACL4SSROnlineFull": "ACL4SSR Online Full",
+        "configPresetACL4SSROnlineFull": "ACL4SSR Online Full Google",
         "configPresetACL4SSROnlineMini": "ACL4SSR Online Mini",
         "configPresetDivineEngine": "Divine Engine China",
         "configPresetLoonSimple": "Loon Simple",

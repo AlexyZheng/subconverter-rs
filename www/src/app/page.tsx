@@ -20,17 +20,22 @@ const CONFIG_PRESETS = [
     description: "Full rules"
   },
   {
+    name: "ACL4SSR Full Google",
+    url: "/config/ACL4SSR_Online_Full_Google.ini",
+    description: "Full rules Google"
+  },
+  {
     name: "ACL4SSR Mini",
     url: "/config/ACL4SSR_Online_Mini.ini",
     description: "Minimal rules"
   },
   {
-    name: "Divine China",
+    name: "Divine China (Apple)",
     url: "/config/China.yaml",
     description: "China rules"
   },
   {
-    name: "Loon Simple",
+    name: "Loon Simple (Apple)",
     url: "/config/loon_simple.conf",
     description: "Simple Loon config"
   }

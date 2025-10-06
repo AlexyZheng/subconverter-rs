@@ -331,6 +331,16 @@ export default function ConvertPage() {
                                         {t('configPresetACL4SSROnlineFull')}
                                     </button>
                                     <button
+                                    type="button"
+                                    onClick={() => {
+                                        setFormData(prev => ({ ...prev, config: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_Google.ini' }));
+                                        setSetFields(prev => new Set([...prev, 'config']));
+                                    }}
+                                    className={`${smallButtonClass} bg-blue-100 hover:bg-blue-200 border-blue-300`}
+                                    >
+                                    {t('configPresetACL4SSROnlineFullGoogle')}
+                                    </button>
+                                    <button
                                         type="button"
                                         onClick={() => {
                                             setFormData(prev => ({ ...prev, config: 'https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Mini.ini' }));

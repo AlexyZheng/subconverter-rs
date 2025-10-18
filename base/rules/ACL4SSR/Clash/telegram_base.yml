@@ -80,7 +80,7 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
     interval: 86400 # Checks for updates daily
-    path:./ruleset/telegram_voip_nets.yaml
+    path: ./ruleset/telegram_voip_nets.yaml
 
 # --- 2. Rules Section (Applies Selective Filtering) ---
 rules:

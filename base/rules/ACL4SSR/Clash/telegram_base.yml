@@ -1,5 +1,77 @@
 # telegram_base.yml (Custom YAML Template Content)
 
+[custom]
+;不要随意改变关键字，否则会导致出错
+;acl4SSR规则
+
+;去广告：支持
+;自动测速：支持
+;苹果分流：支持
+;增强中国IP段：支持
+;增强国外GFW：支持
+
+;设置规则标志位
+
+
+ruleset=🖧 LAN,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/LocalAreaNetwork.list
+
+
+ruleset=中俄网魚單 КНР-РФ Пойманной рыбы,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaChinaWhitelist.list
+
+ruleset=✦︎ AI,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.list
+
+
+ruleset=▶️ Youtube,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/Youtube.list
+
+
+ruleset=РФ,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaOnly.list
+
+ruleset=Github,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/Github.list
+
+ruleset=中國國內 КНР В пределах,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaCompanyIp.list
+ruleset=中國國內 КНР В пределах,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+ruleset=中國國內 КНР В пределах,[]GEOIP,CN
+ruleset=俄羅斯國內 РФ В пределах,[]GEOIP,RU
+
+ruleset=漏网之魚 Непойманная рыба,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/GoogleCN.list
+ruleset=漏网之魚 Непойманная рыба,[]FINAL
+
+
+
+;设置规则标志位
+
+;设置分组标志位
+custom_proxy_group=♻️ 自动选择 Автовыбор`url-test`.*`http://www.gstatic.com/generate_204`300,,100
+custom_proxy_group=♻️ 自动回退 Отступление`fallback`.*`http://www.gstatic.com/generate_204`300,,200
+custom_proxy_group=中俄网魚單 КНР-РФ Пойманной рыбы`select`[]♻️ 自动选择 Автовыбор`.*`[]DIRECT
+custom_proxy_group=中國國內 КНР В пределах`select`[]DIRECT`.*
+custom_proxy_group=俄羅斯國內 РФ В пределах`select`[]DIRECT`.*
+
+custom_proxy_group=Telegram`select`[]♻️ 自动选择 Автовыбор`[]DIRECT
+
+custom_proxy_group=Github`select`[]DIRECT`[]♻️ 自动选择 Автовыбор
+
+custom_proxy_group=▶️ Youtube`select`[]♻️ 自动选择 Автовыбор`[]DIRECT
+
+custom_proxy_group=✦︎ AI`select`[]♻️ 自动回退 Отступление`[]DIRECT
+custom_proxy_group=РФ`select`[]♻️ 自动回退 Отступление`[]DIRECT
+
+custom_proxy_group=漏网之魚 Непойманная рыба`select`[]DIRECT`[]♻️ 自动选择 Автовыбор
+custom_proxy_group=🖧 LAN`select`[]DIRECT
+
+
+enable_rule_generator=true
+overwrite_original_rules=false
+
+;clash_rule_base=https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/telegram_base.yml
+
+
+;luck
+
+
+
+
+
 # --- 1. Rule Provider Definition (Fetches Dynamic IPs) ---
 rule-providers:
   telegram_voip_nets:

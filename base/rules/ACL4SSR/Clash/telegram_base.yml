@@ -1,0 +1,23 @@
+# telegram_base.yml (Custom YAML Template Content)
+
+# --- 1. Rule Provider Definition (Fetches Dynamic IPs) ---
+rule-providers:
+  telegram_voip_nets:
+    type: http
+    # This behavior is critical for processing the CIDR list correctly
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
+    interval: 86400 # Checks for updates daily
+    path:./ruleset/telegram_voip_nets.yaml
+
+# --- 2. Rules Section (Applies Selective Filtering) ---
+rules:
+  # TCP Signaling Traffic: Targets the dynamic IP list on call setup ports (80, 443, 5222)
+  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
+
+  # UDP Media Traffic: Targets the dynamic IP list on real-time media ports (596-599, 1400, 4000-5000)
+  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
+
+  # Placeholder for other general rules that subconverter will append later.
+  # (e.g., GEOIP, FINAL MATCH, etc.)
+  # If you are using a base template, ensure standard rules are included here or added by subconverter.

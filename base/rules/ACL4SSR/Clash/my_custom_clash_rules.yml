@@ -2,15 +2,13 @@ custom:
   enable_rule_generator: true
   overwrite_original_rules: true
 
-ruleset=中國國內 КНР В пределах,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
-
-
-
 
 ruleset=✦︎ AI,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.list
 
 
 https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaChinaWhitelist.list
+
+https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/GoogleCN.list
 
 
 rule-providers:
@@ -23,15 +21,30 @@ rule-providers:
     format: yaml
   LAN:
     type: http
-    behavior: ipcidr
+    behavior: classical
     url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/LAN.yaml"
     interval: 86400 # Checks for updates daily
     path: ./ruleset/LAN.yaml
     format: yaml
+  RussianServices:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussianServices.mrs"
+    interval: 86400
+    path: ./ruleset/RussianServices.mrs
+    format: mrs
 
 prepend-rules:
+  - RULE-SET,LAN,🖧 LAN,
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
+  - RULE-SET,RussianServices,俄羅斯國內 РФ В пределах
+
+  - GEOIP,RU,俄羅斯國內 РФ В пределах
+  - GEOIP,CN,中國國內 КНР В пределах
+  - GEOSITE,CN,中國國內 КНР В пределах
+
+  - MATCH,漏网之魚 Непойманная рыба
 
 
 # --- 1. Rule Provider Definition (Fetches Dynamic IPs) ---

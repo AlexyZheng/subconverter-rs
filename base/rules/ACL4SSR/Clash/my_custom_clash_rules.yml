@@ -2,8 +2,15 @@ custom:
   enable_rule_generator: true
   overwrite_original_rules: true
 
+ruleset=中國國內 КНР В пределах,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
 
 
+
+
+ruleset=✦︎ AI,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.list
+
+
+https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaChinaWhitelist.list
 
 
 rule-providers:

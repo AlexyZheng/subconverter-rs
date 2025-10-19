@@ -58,7 +58,7 @@ rule-providers:
     format: mrs
 
 prepend-rules:
-  - RULE-SET,LAN,DIRECT
+  - RULE-SET,LAN,🖧 LAN
   - RULE-SET,Github,Github
   - RULE-SET,AI,✦︎ AI
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222

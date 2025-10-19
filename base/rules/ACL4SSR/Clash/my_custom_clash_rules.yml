@@ -2,6 +2,15 @@ custom:
   enable_rule_generator: true
   overwrite_original_rules: true
 
+ruleset=中國國內 КНР В пределах,https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/ChinaDomain.list
+
+
+
+
+ruleset=✦︎ AI,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.list
+
+
+https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaChinaWhitelist.list
 
 
 rule-providers:
@@ -14,14 +23,13 @@ rule-providers:
     format: yaml
   LAN:
     type: http
-    behavior: classical
+    behavior: ipcidr
     url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/LAN.yaml"
     interval: 86400 # Checks for updates daily
     path: ./ruleset/LAN.yaml
     format: yaml
 
-rules:
-  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,
+prepend-rules:
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
 

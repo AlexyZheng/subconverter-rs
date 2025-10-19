@@ -10,21 +10,18 @@ rule-providers:
     behavior: ipcidr
     url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
     interval: 86400 # Checks for updates daily
-    path: ./ruleset/telegram_voip_nets.mrs
-    format: mrs
+    path: ./ruleset/telegram_voip_nets.yaml
+    format: yaml
   LAN:
     type: http
-    behavior: ipcidr
+    behavior: classical
     url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/LAN.yaml"
     interval: 86400 # Checks for updates daily
     path: ./ruleset/LAN.yaml
     format: yaml
 
 rules:
-  - IP-CIDR,45.83.20.34/32,DIRECT,no-resolve
-  - IP-CIDR,188.68.53.100/32,DIRECT,no-resolve
-  - IP-CIDR,45.83.21.107/32,DIRECT,no-resolve
-  - RULE-SET,LAN
+  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
 

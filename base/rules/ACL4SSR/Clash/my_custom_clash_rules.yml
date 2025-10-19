@@ -7,13 +7,6 @@ custom:
 
 
 rule-providers:
-  telegram_voip_nets:
-    type: http
-    behavior: ipcidr
-    url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
-    interval: 86400 # Checks for updates daily
-    path: ./ruleset/telegram_voip_nets.yaml
-    format: yaml
   LAN:
     type: http
     behavior: classical
@@ -28,6 +21,13 @@ rule-providers:
     interval: 86400
     path: ./ruleset/RussianServices.mrs
     format: mrs
+  telegram_voip_nets:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
+    interval: 86400 # Checks for updates daily
+    path: ./ruleset/telegram_voip_nets.yaml
+    format: yaml
   AI:
     type: http
     behavior: domain
@@ -42,13 +42,6 @@ rule-providers:
     interval: 86400
     path: ./ruleset/Github.mrs
     format: mrs
-  RussiaChinaWhitelist:
-    type: http
-    behavior: classical
-    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussianChinaWhitelist.yaml"
-    interval: 86400 # Checks for updates daily
-    path: ./ruleset/RussianChinaWhitelist.yaml
-    format: yaml
   GoogleCNIP:
     type: http
     behavior: ipcidr
@@ -64,21 +57,19 @@ rule-providers:
     path: ./ruleset/GoogleCN.mrs
     format: mrs
 
-append-rules:
-  - RULE-SET,LAN,🖧 LAN,
+prepend-rules:
+  - RULE-SET,LAN,DIRECT
   - RULE-SET,Github,Github
   - RULE-SET,AI,✦︎ AI
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
-  - RULE-SET,RussiaChinaWhitelist,中俄网魚單 КНР-РФ Пойманной рыбы
   - RULE-SET,RussianServices,俄羅斯國內 РФ В пределах
-  - GEOIP,RU,俄羅斯國內 РФ В пределах
-  - GEOIP,CN,中國國內 КНР В пределах
-  - GEOSITE,CN,中國國內 КНР В пределах
+
+
+append-rules:
   - RULE-SET,GoogleCNIP,漏网之魚 Непойманная рыба
   - RULE-SET,GoogleCN,漏网之魚 Непойманная рыба
   - MATCH,漏网之魚 Непойманная рыба
-
 
 # --- 1. Rule Provider Definition (Fetches Dynamic IPs) ---
 rule-providers:

@@ -1,0 +1,37 @@
+custom:
+  enable_rule_generator: true
+  overwrite_original_rules: true
+
+proxy_groups:
+
+rule-providers:
+  telegram_voip_nets:
+    type: http
+    # This behavior is critical for processing the CIDR list correctly
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/fernvenue/telegram-cidr-list/refs/heads/master/CIDR.yaml"
+    interval: 86400 # Checks for updates daily
+    path: ./ruleset/telegram_voip_nets.mrs
+    format: mrs
+
+rules:
+  - IP-CIDR,45.83.20.34/32,DIRECT,no-resolve
+  - IP-CIDR,188.68.53.100/32,DIRECT,no-resolve
+  - IP-CIDR,45.83.21.107/32,DIRECT,no-resolve
+  - DOMAIN-SUFFIX,acl4.ssr,🖧 LAN
+  - DOMAIN-SUFFIX,ip6-localhost,🖧 LAN
+  - DOMAIN-SUFFIX,ip6-loopback,🖧 LAN
+  - DOMAIN-SUFFIX,local,🖧 LAN
+  - DOMAIN-SUFFIX,localhost,🖧 LAN
+  - IP-CIDR,10.0.0.0/8,🖧 LAN,no-resolve
+  - IP-CIDR,100.64.0.0/10,🖧 LAN,no-resolve
+  - IP-CIDR,127.0.0.0/8,🖧 LAN,no-resolve
+  - IP-CIDR,172.16.0.0/12,🖧 LAN,no-resolve
+  - IP-CIDR,192.168.0.0/16,🖧 LAN,no-resolve
+  - IP-CIDR,198.18.0.0/16,🖧 LAN,no-resolve
+  - IP-CIDR6,::1/128,🖧 LAN,no-resolve
+  - IP-CIDR6,fc00::/7,🖧 LAN,no-resolve
+  - IP-CIDR6,fe80::/10,🖧 LAN,no-resolve
+  - IP-CIDR6,fd00::/8,🖧 LAN,no-resolve
+  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
+  - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000

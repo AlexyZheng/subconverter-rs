@@ -3,12 +3,7 @@ custom:
   overwrite_original_rules: true
 
 
-ruleset=✦︎ AI,https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.list
 
-
-https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussiaChinaWhitelist.list
-
-https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/GoogleCN.list
 
 
 rule-providers:
@@ -33,17 +28,55 @@ rule-providers:
     interval: 86400
     path: ./ruleset/RussianServices.mrs
     format: mrs
+  AI:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/AI.mrs"
+    interval: 86400
+    path: ./ruleset/AI.mrs
+    format: mrs
+  Github:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/Github.mrs"
+    interval: 86400
+    path: ./ruleset/Github.mrs
+    format: mrs
+  RussiaChinaWhitelist:
+    type: http
+    behavior: classical
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/RussianChinaWhitelist.yaml"
+    interval: 86400 # Checks for updates daily
+    path: ./ruleset/RussianChinaWhitelist.yaml
+    format: yaml
+  GoogleCNIP:
+    type: http
+    behavior: ipcidr
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/GoogleCNIP.yaml"
+    interval: 86400 # Checks for updates daily
+    path: ./ruleset/GoogleCNIP.yaml
+    format: yaml
+  GoogleCN:
+    type: http
+    behavior: domain
+    url: "https://raw.githubusercontent.com/AlexyZheng/subconverter-rs/refs/heads/main/base/rules/ACL4SSR/Clash/GoogleCN.mrs"
+    interval: 86400 # Checks for updates daily
+    path: ./ruleset/GoogleCN.mrs
+    format: mrs
 
-prepend-rules:
+append-rules:
   - RULE-SET,LAN,🖧 LAN,
+  - RULE-SET,Github,Github
+  - RULE-SET,AI,✦︎ AI
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,tcp,DST-PORT,80/443/5222
   - RULE-SET,telegram_voip_nets,Telegram,no-resolve,network,udp,DST-PORT,596/597/598/599/1400/4000-5000
+  - RULE-SET,RussiaChinaWhitelist,中俄网魚單 КНР-РФ Пойманной рыбы
   - RULE-SET,RussianServices,俄羅斯國內 РФ В пределах
-
   - GEOIP,RU,俄羅斯國內 РФ В пределах
   - GEOIP,CN,中國國內 КНР В пределах
   - GEOSITE,CN,中國國內 КНР В пределах
-
+  - RULE-SET,GoogleCNIP,漏网之魚 Непойманная рыба
+  - RULE-SET,GoogleCN,漏网之魚 Непойманная рыба
   - MATCH,漏网之魚 Непойманная рыба
 
 
